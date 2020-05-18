@@ -1,0 +1,95 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+body{
+  
+    background:linear-gradient(left,#ee8972 30%,#f7d695 100%);
+    background:-webkit-linear-gradient(left,#ee8972 30%,#f7d695 100%); 
+    display: flex;
+    justify-content: center;
+    align-items: center;/*will not work without height*/
+    min-height: 100vh;/*Viewport Height (vh) – A percentage of the full viewport height.*/
+    overflow: hidden;
+    flex-direction: column;
+   
+}
+.clock{
+    width: 300px;
+    height: 300px;
+    background-color: rgba(245, 199, 115, 0.8);
+    border: 3px solid black;
+    border-radius: 50%;
+    position: relative;
+}
+.clock .number{
+    --rotation:0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform: rotate(var(--rotation));
+    font-size: 20px;
+}
+.clock .number1{--rotation:30deg}
+.clock .number2{--rotation:60deg}
+.clock .number3{--rotation:90deg}
+.clock .number4{--rotation:120deg}
+.clock .number5{--rotation:150deg}
+.clock .number6{--rotation:180deg}
+.clock .number7{--rotation:210deg}
+.clock .number8{--rotation:240deg}
+.clock .number9{--rotation:270deg}
+.clock .number10{--rotation:300deg}
+.clock .number11{--rotation:330deg}
+/*.clock .number12{--rotation:360deg} we don't need it because it is the defualt of 12*/
+
+.clock .hand{
+--rotation:0;
+position: absolute;
+
+left: 50%;
+bottom: 50%;
+border: 1px solid balck;
+border-radius: 10px ;
+transform-origin: bottom;
+transform: translate(-50%) rotate(calc(var(--rotation)*1deg));/*moving the item 50% of its width backwards to be exakt centered in 12 not a little bit after*/
+/*OBS! you can't divide those to two transforms otherwise the first one won't work*/
+/*
+
+very important to have calc and no , between translate and rotate
+
+
+*/
+z-index: 10;
+transition: all 0.1s ease;
+}
+.clock::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: black;
+    z-index: 11;
+    
+
+}
+.clock .hand.second{ /*OBS! NO SPACE BETWEEN .hand.second otherwise it doesn't work*/
+    background-color: red;
+    width: 3px;
+    height: 45%;
+}
+.clock .hand.min{
+    background-color: black;
+    width: 7px;
+    height: 40%;
+}
+.clock .hand.hour{
+    background-color: black;
+    width: 10px;
+    height: 35%;
+}
